@@ -1,0 +1,13 @@
+import java.net.*;
+import java.io.*;
+ 
+public class Game_Protocol {
+    private int currentPlayer = 0;
+ 
+    public String processInput(int x, int y, int z, int h) {
+      
+      currentPlayer++;
+      currentPlayer=currentPlayer%2;
+      return theOutput;
+    }
+}

@@ -1,0 +1,6 @@
+Brian Shrawder : bshrawde
+David Olaves : dolavesm
+
+These parts we had more trouble with, we were unable to get the fourth test case pass. 
+
+On parts two and Three David did most of the work, he focused on the HeapFile and Tuple classes. He also worked on the HeapScan class Brian helped with the HeapScan class and helped debug and find issues in the tuple and HeapFile class. 

@@ -1,0 +1,23 @@
+import java.util.*;
+import java.io.*;
+import java.awt.*;
+import java.net.*;
+
+
+public class runningGame implements Runnable{
+  public void run(Socket client1, Socket client2, PrintWriter out1, PrintWriter out2, BufferedReader in1, BufferedReader in2){
+    String passed;
+    while(1){
+      passed = in1.readLine();
+      if(passed.equals("Bye.")){
+        break;
+      }
+      out2.println(passed);
+      passed = in2.readLine();
+      if(passed.equals("Bye.")){
+        break;
+      }
+      out1.println(passed);
+    }
+  }
+}

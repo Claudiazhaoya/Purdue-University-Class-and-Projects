@@ -1,0 +1,3 @@
+in step three the output i got was that i printed out A B and C but not neccsarly in order and sometimes would print the same letter next to the same letter. example AAAAABAC
+
+in thr2.cc the call for printing C, which is not in a thread, came before the threads, therefore the code never reached the threads and just printed out C over and over agian.

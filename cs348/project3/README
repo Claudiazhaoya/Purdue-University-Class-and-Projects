@@ -1,0 +1,26 @@
+CS348 - Project 3
+Author: Brian Shrawder
+Login: bshrawde
+Email: bshrawde@purdue.edu
+
+I have included a make file all you have to do is type make into the terminal and it will compile and 
+run the code.
+	if you do not want to use the make file the command is
+		javac -cp ojdbc6.jar:. RBAC.java
+		java -cp ojdbc6.jar:. RBAC
+	if you have to drop the tables and rest. there is a drop tables file
+	then  you have the tables file to reset the tables and a admin file
+	that addes an admin to the table
+
+I may have misspelled authorization or successfully someplace but i think i found all those errors
+I also noticed at one point that my output was not in the same order as the one provided on piazza 
+other than the output tuples in the wrong order the output was correct
+
+
+I have another class that is using a SQL database. the values and table in there could mess with the output
+I will wait as long as I can before modifing the database as to ensure that does not happen 
+but i might have to for that class
+
+
+
+

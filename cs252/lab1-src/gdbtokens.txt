@@ -1,0 +1,5 @@
+numbers = malloc(sizeof(int)*4)
+
+ars766RZFJpy2
+stYH8URnBGN1o
+ogpyQozEcrAs

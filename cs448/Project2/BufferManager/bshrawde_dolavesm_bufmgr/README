@@ -1,0 +1,7 @@
+Brian Shrawder : bshrawde
+David Olaves : dolavesm
+
+David implmented the hash files and the Linked list for replacement cannidates
+Brian implmented the Pin, unpin, new page, free page, flush, and all the small methods. 
+
+We both worked on debugging the bufMgr program. 
