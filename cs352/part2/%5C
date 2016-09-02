@@ -1,0 +1,84 @@
+%{
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<sys/types.h>
+#include<regex.h>
+#include<unistd.h>
+#include<dirent.h>
+#include<assert.h>
+%}
+
+%token ASSIGN ID NUM PLUS MINUS MULTIPLICATION DIVISON EQUAL WRITING STRING NEWLINE SEMI TOP END LEFTPAREN RIGHTPAREN VAR
+%start goal
+
+%%
+goal:
+	TOP middle eof 	
+	;
+middle:
+	state middle
+	|
+	;
+state: 
+	WRITING LEFTPAREN expression RIGHTPAREN
+	|declare
+	|ID EQUAL expression
+	|linestop
+	;
+declare:
+	VAR ID
+	|VAR ID EQUAL expression
+	;
+expression:
+	STRING
+	|math
+	;
+math:
+	|ID operator math
+	|NUM operator math
+	|ID
+	|NUM
+	;
+operator:
+	PLUS
+	|MINUS
+	|MULTIPLICATION
+	|DIVISON
+	;
+linestop:
+	NEWLINE
+	|SEMI
+	;
+eof:
+	END
+	|END NEWLINE
+	;
+
+%%
+FILE *yyin;
+int yylineno;
+yyerror(char *s)
+{
+    fprintf(stderr, "error: %s, line: %d\n", s, yylineno);
+}
+
+main(int argc, char *argv[])
+{
+    //yydebug = 1;
+    if (argc == 2) {
+        FILE *file;
+
+        file = fopen(argv[1], "r");
+        if (!file) {
+            fprintf(stderr, "could not open %s\n", argv[1]);
+        } else{
+            yyin = file;
+            //yyparse() will call yylex()
+            yyparse();
+        }
+    } else{
+        fprintf(stderr, "format: ./yacc_example [filename]");
+    }
+}
+

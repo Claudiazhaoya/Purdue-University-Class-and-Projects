@@ -1,0 +1,6 @@
+Brian Shrawder
+
+I was able to get the grammar for this part implemted along with some of the symbol table. 
+I fixed most of the error reporting but still  having issues with it reportin either to many or to little times
+Had issues with the AST in order for it to compile and run with any semblince of correctness I left it out of this submission . I am going to work on it
+for the rest of the semester. 

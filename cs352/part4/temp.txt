@@ -1,0 +1,2 @@
+struct table* ts = symbolTable[$2];
+printf("%d\n",ts->type);

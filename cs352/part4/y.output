@@ -1,0 +1,1616 @@
+Terminals unused in grammar
+
+   ASSIGN
+   FOR
+   OTHER
+
+
+Grammar
+
+    0 $accept: goal $end
+
+    1 goal: TOP middle eof
+
+    2 middle: state middle
+    3       | /* empty */
+
+    4 state: WRITING LEFTPAREN docwrite RIGHTPAREN linestop
+    5      | ifelse
+    6      | WHILE condition LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY linestop
+    7      | DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI linestop
+    8      | declare linestop
+    9      | ID EQUAL expression linestop
+   10      | ID PERIOD ID EQUAL expression linestop
+   11      | ID LEFTBRACE expression RIGHTBRACE EQUAL expression linestop
+   12      | NEWLINE
+
+   13 ifelse: IF condition LEFTCURLY todo RIGHTCURLY after
+
+   14 todo: NEWLINE state todo
+   15     | /* empty */
+
+   16 after: ELSE LEFTCURLY todo RIGHTCURLY after
+   17      | ELSE ifelse
+   18      | /* empty */
+
+   19 condition: LEFTPAREN bool RIGHTPAREN
+
+   20 declare: VAR ID
+   21        | VAR ID EQUAL expression
+   22        | VAR ID EQUAL LEFTBRACE array RIGHTBRACE
+   23        | VAR ID EQUAL LEFTCURLY object RIGHTCURLY
+
+   24 docwrite: expression
+   25         | expression COMMA docwrite
+   26         | /* empty */
+
+   27 expression: BREAK
+   28           | bool
+
+   29 object: blank ID COLON expression blank
+   30       | blank ID COLON expression blank COMMA object
+   31       | /* empty */
+
+   32 array: blank expression blank
+   33      | blank expression blank COMMA array
+   34      | /* empty */
+
+   35 blank: NEWLINE blank
+   36      | /* empty */
+
+   37 bool: bool BOOLAND math
+   38     | bool BOOLOR math
+   39     | bool LESSTHAN math
+   40     | bool GREATERTHAN math
+   41     | bool BOOLEQUAL math
+   42     | bool NOT math
+   43     | NOT math
+   44     | math
+
+   45 math: math PLUS T
+   46     | math MINUS T
+   47     | T
+
+   48 T: T MULTIPLICATION argument
+   49  | T DIVISON argument
+   50  | argument
+
+   51 argument: NUM
+   52         | ID
+   53         | STRING
+   54         | ID PERIOD ID
+   55         | ID LEFTBRACE expression RIGHTBRACE
+   56         | LEFTPAREN math RIGHTPAREN
+
+   57 linestop: NEWLINE
+   58         | SEMI
+
+   59 eof: END
+   60    | END NEWLINE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+STRING (258) 53
+ID (259) 9 10 11 20 21 22 23 29 30 52 54 55
+BREAK (260) 27
+NUM (261) 51
+ASSIGN (262)
+VAR (263) 20 21 22 23
+IF (264) 13
+ELSE (265) 16 17
+WHILE (266) 6 7
+FOR (267)
+DO (268) 7
+PLUS (269) 45
+MINUS (270) 46
+BOOLOR (271) 38
+BOOLAND (272) 37
+NOT (273) 42 43
+BOOLEQUAL (274) 41
+LESSTHAN (275) 39
+GREATERTHAN (276) 40
+MULTIPLICATION (277) 48
+DIVISON (278) 49
+EQUAL (279) 9 10 11 21 22 23
+WRITING (280) 4
+NEWLINE (281) 6 7 12 14 35 57 60
+SEMI (282) 7 58
+TOP (283) 1
+END (284) 59 60
+LEFTPAREN (285) 4 19 56
+RIGHTPAREN (286) 4 19 56
+COMMA (287) 25 30 33
+LEFTCURLY (288) 6 7 13 16 23
+RIGHTCURLY (289) 6 7 13 16 23
+LEFTBRACE (290) 11 22 55
+RIGHTBRACE (291) 11 22 55
+COLON (292) 29 30
+PERIOD (293) 10 54
+OTHER (294)
+
+
+Nonterminals, with rules where they appear
+
+$accept (40)
+    on left: 0
+goal (41)
+    on left: 1, on right: 0
+middle (42)
+    on left: 2 3, on right: 1 2
+state (43)
+    on left: 4 5 6 7 8 9 10 11 12, on right: 2 6 7 14
+ifelse (44)
+    on left: 13, on right: 5 17
+todo (45)
+    on left: 14 15, on right: 13 14 16
+after (46)
+    on left: 16 17 18, on right: 13 16
+condition (47)
+    on left: 19, on right: 6 7 13
+declare (48)
+    on left: 20 21 22 23, on right: 8
+docwrite (49)
+    on left: 24 25 26, on right: 4 25
+expression (50)
+    on left: 27 28, on right: 9 10 11 21 24 25 29 30 32 33 55
+object (51)
+    on left: 29 30 31, on right: 23 30
+array (52)
+    on left: 32 33 34, on right: 22 33
+blank (53)
+    on left: 35 36, on right: 29 30 32 33 35
+bool (54)
+    on left: 37 38 39 40 41 42 43 44, on right: 19 28 37 38 39 40 41
+    42
+math (55)
+    on left: 45 46 47, on right: 37 38 39 40 41 42 43 44 45 46 56
+T (56)
+    on left: 48 49 50, on right: 45 46 47 48 49
+argument (57)
+    on left: 51 52 53 54 55 56, on right: 48 49 50
+linestop (58)
+    on left: 57 58, on right: 4 6 7 8 9 10 11
+eof (59)
+    on left: 59 60, on right: 1
+
+
+state 0
+
+    0 $accept: . goal $end
+
+    TOP  shift, and go to state 1
+
+    goal  go to state 2
+
+
+state 1
+
+    1 goal: TOP . middle eof
+
+    ID       shift, and go to state 3
+    VAR      shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    DO       shift, and go to state 7
+    WRITING  shift, and go to state 8
+    NEWLINE  shift, and go to state 9
+
+    $default  reduce using rule 3 (middle)
+
+    middle   go to state 10
+    state    go to state 11
+    ifelse   go to state 12
+    declare  go to state 13
+
+
+state 2
+
+    0 $accept: goal . $end
+
+    $end  shift, and go to state 14
+
+
+state 3
+
+    9 state: ID . EQUAL expression linestop
+   10      | ID . PERIOD ID EQUAL expression linestop
+   11      | ID . LEFTBRACE expression RIGHTBRACE EQUAL expression linestop
+
+    EQUAL      shift, and go to state 15
+    LEFTBRACE  shift, and go to state 16
+    PERIOD     shift, and go to state 17
+
+
+state 4
+
+   20 declare: VAR . ID
+   21        | VAR . ID EQUAL expression
+   22        | VAR . ID EQUAL LEFTBRACE array RIGHTBRACE
+   23        | VAR . ID EQUAL LEFTCURLY object RIGHTCURLY
+
+    ID  shift, and go to state 18
+
+
+state 5
+
+   13 ifelse: IF . condition LEFTCURLY todo RIGHTCURLY after
+
+    LEFTPAREN  shift, and go to state 19
+
+    condition  go to state 20
+
+
+state 6
+
+    6 state: WHILE . condition LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY linestop
+
+    LEFTPAREN  shift, and go to state 19
+
+    condition  go to state 21
+
+
+state 7
+
+    7 state: DO . LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI linestop
+
+    LEFTCURLY  shift, and go to state 22
+
+
+state 8
+
+    4 state: WRITING . LEFTPAREN docwrite RIGHTPAREN linestop
+
+    LEFTPAREN  shift, and go to state 23
+
+
+state 9
+
+   12 state: NEWLINE .
+
+    $default  reduce using rule 12 (state)
+
+
+state 10
+
+    1 goal: TOP middle . eof
+
+    END  shift, and go to state 24
+
+    eof  go to state 25
+
+
+state 11
+
+    2 middle: state . middle
+
+    ID       shift, and go to state 3
+    VAR      shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    DO       shift, and go to state 7
+    WRITING  shift, and go to state 8
+    NEWLINE  shift, and go to state 9
+
+    $default  reduce using rule 3 (middle)
+
+    middle   go to state 26
+    state    go to state 11
+    ifelse   go to state 12
+    declare  go to state 13
+
+
+state 12
+
+    5 state: ifelse .
+
+    $default  reduce using rule 5 (state)
+
+
+state 13
+
+    8 state: declare . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 29
+
+
+state 14
+
+    0 $accept: goal $end .
+
+    $default  accept
+
+
+state 15
+
+    9 state: ID EQUAL . expression linestop
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 36
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 16
+
+   11 state: ID LEFTBRACE . expression RIGHTBRACE EQUAL expression linestop
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 41
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 17
+
+   10 state: ID PERIOD . ID EQUAL expression linestop
+
+    ID  shift, and go to state 42
+
+
+state 18
+
+   20 declare: VAR ID .
+   21        | VAR ID . EQUAL expression
+   22        | VAR ID . EQUAL LEFTBRACE array RIGHTBRACE
+   23        | VAR ID . EQUAL LEFTCURLY object RIGHTCURLY
+
+    EQUAL  shift, and go to state 43
+
+    $default  reduce using rule 20 (declare)
+
+
+state 19
+
+   19 condition: LEFTPAREN . bool RIGHTPAREN
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    bool      go to state 44
+    math      go to state 38
+    T         go to state 39
+    argument  go to state 40
+
+
+state 20
+
+   13 ifelse: IF condition . LEFTCURLY todo RIGHTCURLY after
+
+    LEFTCURLY  shift, and go to state 45
+
+
+state 21
+
+    6 state: WHILE condition . LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY linestop
+
+    LEFTCURLY  shift, and go to state 46
+
+
+state 22
+
+    7 state: DO LEFTCURLY . NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI linestop
+
+    NEWLINE  shift, and go to state 47
+
+
+state 23
+
+    4 state: WRITING LEFTPAREN . docwrite RIGHTPAREN linestop
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    $default  reduce using rule 26 (docwrite)
+
+    docwrite    go to state 48
+    expression  go to state 49
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 24
+
+   59 eof: END .
+   60    | END . NEWLINE
+
+    NEWLINE  shift, and go to state 50
+
+    $default  reduce using rule 59 (eof)
+
+
+state 25
+
+    1 goal: TOP middle eof .
+
+    $default  reduce using rule 1 (goal)
+
+
+state 26
+
+    2 middle: state middle .
+
+    $default  reduce using rule 2 (middle)
+
+
+state 27
+
+   57 linestop: NEWLINE .
+
+    $default  reduce using rule 57 (linestop)
+
+
+state 28
+
+   58 linestop: SEMI .
+
+    $default  reduce using rule 58 (linestop)
+
+
+state 29
+
+    8 state: declare linestop .
+
+    $default  reduce using rule 8 (state)
+
+
+state 30
+
+   53 argument: STRING .
+
+    $default  reduce using rule 53 (argument)
+
+
+state 31
+
+   52 argument: ID .
+   54         | ID . PERIOD ID
+   55         | ID . LEFTBRACE expression RIGHTBRACE
+
+    LEFTBRACE  shift, and go to state 51
+    PERIOD     shift, and go to state 52
+
+    $default  reduce using rule 52 (argument)
+
+
+state 32
+
+   27 expression: BREAK .
+
+    $default  reduce using rule 27 (expression)
+
+
+state 33
+
+   51 argument: NUM .
+
+    $default  reduce using rule 51 (argument)
+
+
+state 34
+
+   43 bool: NOT . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 53
+    T         go to state 39
+    argument  go to state 40
+
+
+state 35
+
+   56 argument: LEFTPAREN . math RIGHTPAREN
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 54
+    T         go to state 39
+    argument  go to state 40
+
+
+state 36
+
+    9 state: ID EQUAL expression . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 55
+
+
+state 37
+
+   28 expression: bool .
+   37 bool: bool . BOOLAND math
+   38     | bool . BOOLOR math
+   39     | bool . LESSTHAN math
+   40     | bool . GREATERTHAN math
+   41     | bool . BOOLEQUAL math
+   42     | bool . NOT math
+
+    BOOLOR       shift, and go to state 56
+    BOOLAND      shift, and go to state 57
+    NOT          shift, and go to state 58
+    BOOLEQUAL    shift, and go to state 59
+    LESSTHAN     shift, and go to state 60
+    GREATERTHAN  shift, and go to state 61
+
+    $default  reduce using rule 28 (expression)
+
+
+state 38
+
+   44 bool: math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 44 (bool)
+
+
+state 39
+
+   47 math: T .
+   48 T: T . MULTIPLICATION argument
+   49  | T . DIVISON argument
+
+    MULTIPLICATION  shift, and go to state 64
+    DIVISON         shift, and go to state 65
+
+    $default  reduce using rule 47 (math)
+
+
+state 40
+
+   50 T: argument .
+
+    $default  reduce using rule 50 (T)
+
+
+state 41
+
+   11 state: ID LEFTBRACE expression . RIGHTBRACE EQUAL expression linestop
+
+    RIGHTBRACE  shift, and go to state 66
+
+
+state 42
+
+   10 state: ID PERIOD ID . EQUAL expression linestop
+
+    EQUAL  shift, and go to state 67
+
+
+state 43
+
+   21 declare: VAR ID EQUAL . expression
+   22        | VAR ID EQUAL . LEFTBRACE array RIGHTBRACE
+   23        | VAR ID EQUAL . LEFTCURLY object RIGHTCURLY
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+    LEFTCURLY  shift, and go to state 68
+    LEFTBRACE  shift, and go to state 69
+
+    expression  go to state 70
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 44
+
+   19 condition: LEFTPAREN bool . RIGHTPAREN
+   37 bool: bool . BOOLAND math
+   38     | bool . BOOLOR math
+   39     | bool . LESSTHAN math
+   40     | bool . GREATERTHAN math
+   41     | bool . BOOLEQUAL math
+   42     | bool . NOT math
+
+    BOOLOR       shift, and go to state 56
+    BOOLAND      shift, and go to state 57
+    NOT          shift, and go to state 58
+    BOOLEQUAL    shift, and go to state 59
+    LESSTHAN     shift, and go to state 60
+    GREATERTHAN  shift, and go to state 61
+    RIGHTPAREN   shift, and go to state 71
+
+
+state 45
+
+   13 ifelse: IF condition LEFTCURLY . todo RIGHTCURLY after
+
+    NEWLINE  shift, and go to state 72
+
+    $default  reduce using rule 15 (todo)
+
+    todo  go to state 73
+
+
+state 46
+
+    6 state: WHILE condition LEFTCURLY . NEWLINE state NEWLINE RIGHTCURLY linestop
+
+    NEWLINE  shift, and go to state 74
+
+
+state 47
+
+    7 state: DO LEFTCURLY NEWLINE . state NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI linestop
+
+    ID       shift, and go to state 3
+    VAR      shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    DO       shift, and go to state 7
+    WRITING  shift, and go to state 8
+    NEWLINE  shift, and go to state 9
+
+    state    go to state 75
+    ifelse   go to state 12
+    declare  go to state 13
+
+
+state 48
+
+    4 state: WRITING LEFTPAREN docwrite . RIGHTPAREN linestop
+
+    RIGHTPAREN  shift, and go to state 76
+
+
+state 49
+
+   24 docwrite: expression .
+   25         | expression . COMMA docwrite
+
+    COMMA  shift, and go to state 77
+
+    $default  reduce using rule 24 (docwrite)
+
+
+state 50
+
+   60 eof: END NEWLINE .
+
+    $default  reduce using rule 60 (eof)
+
+
+state 51
+
+   55 argument: ID LEFTBRACE . expression RIGHTBRACE
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 78
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 52
+
+   54 argument: ID PERIOD . ID
+
+    ID  shift, and go to state 79
+
+
+state 53
+
+   43 bool: NOT math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 43 (bool)
+
+
+state 54
+
+   45 math: math . PLUS T
+   46     | math . MINUS T
+   56 argument: LEFTPAREN math . RIGHTPAREN
+
+    PLUS        shift, and go to state 62
+    MINUS       shift, and go to state 63
+    RIGHTPAREN  shift, and go to state 80
+
+
+state 55
+
+    9 state: ID EQUAL expression linestop .
+
+    $default  reduce using rule 9 (state)
+
+
+state 56
+
+   38 bool: bool BOOLOR . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 81
+    T         go to state 39
+    argument  go to state 40
+
+
+state 57
+
+   37 bool: bool BOOLAND . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 82
+    T         go to state 39
+    argument  go to state 40
+
+
+state 58
+
+   42 bool: bool NOT . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 83
+    T         go to state 39
+    argument  go to state 40
+
+
+state 59
+
+   41 bool: bool BOOLEQUAL . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 84
+    T         go to state 39
+    argument  go to state 40
+
+
+state 60
+
+   39 bool: bool LESSTHAN . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 85
+    T         go to state 39
+    argument  go to state 40
+
+
+state 61
+
+   40 bool: bool GREATERTHAN . math
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    math      go to state 86
+    T         go to state 39
+    argument  go to state 40
+
+
+state 62
+
+   45 math: math PLUS . T
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    T         go to state 87
+    argument  go to state 40
+
+
+state 63
+
+   46 math: math MINUS . T
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    T         go to state 88
+    argument  go to state 40
+
+
+state 64
+
+   48 T: T MULTIPLICATION . argument
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    argument  go to state 89
+
+
+state 65
+
+   49 T: T DIVISON . argument
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    NUM        shift, and go to state 33
+    LEFTPAREN  shift, and go to state 35
+
+    argument  go to state 90
+
+
+state 66
+
+   11 state: ID LEFTBRACE expression RIGHTBRACE . EQUAL expression linestop
+
+    EQUAL  shift, and go to state 91
+
+
+state 67
+
+   10 state: ID PERIOD ID EQUAL . expression linestop
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 92
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 68
+
+   23 declare: VAR ID EQUAL LEFTCURLY . object RIGHTCURLY
+
+    NEWLINE  shift, and go to state 93
+
+    ID        reduce using rule 36 (blank)
+    $default  reduce using rule 31 (object)
+
+    object  go to state 94
+    blank   go to state 95
+
+
+state 69
+
+   22 declare: VAR ID EQUAL LEFTBRACE . array RIGHTBRACE
+
+    NEWLINE  shift, and go to state 93
+
+    RIGHTBRACE  reduce using rule 34 (array)
+    $default    reduce using rule 36 (blank)
+
+    array  go to state 96
+    blank  go to state 97
+
+
+state 70
+
+   21 declare: VAR ID EQUAL expression .
+
+    $default  reduce using rule 21 (declare)
+
+
+state 71
+
+   19 condition: LEFTPAREN bool RIGHTPAREN .
+
+    $default  reduce using rule 19 (condition)
+
+
+state 72
+
+   14 todo: NEWLINE . state todo
+
+    ID       shift, and go to state 3
+    VAR      shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    DO       shift, and go to state 7
+    WRITING  shift, and go to state 8
+    NEWLINE  shift, and go to state 9
+
+    state    go to state 98
+    ifelse   go to state 12
+    declare  go to state 13
+
+
+state 73
+
+   13 ifelse: IF condition LEFTCURLY todo . RIGHTCURLY after
+
+    RIGHTCURLY  shift, and go to state 99
+
+
+state 74
+
+    6 state: WHILE condition LEFTCURLY NEWLINE . state NEWLINE RIGHTCURLY linestop
+
+    ID       shift, and go to state 3
+    VAR      shift, and go to state 4
+    IF       shift, and go to state 5
+    WHILE    shift, and go to state 6
+    DO       shift, and go to state 7
+    WRITING  shift, and go to state 8
+    NEWLINE  shift, and go to state 9
+
+    state    go to state 100
+    ifelse   go to state 12
+    declare  go to state 13
+
+
+state 75
+
+    7 state: DO LEFTCURLY NEWLINE state . NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI linestop
+
+    NEWLINE  shift, and go to state 101
+
+
+state 76
+
+    4 state: WRITING LEFTPAREN docwrite RIGHTPAREN . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 102
+
+
+state 77
+
+   25 docwrite: expression COMMA . docwrite
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    $default  reduce using rule 26 (docwrite)
+
+    docwrite    go to state 103
+    expression  go to state 49
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 78
+
+   55 argument: ID LEFTBRACE expression . RIGHTBRACE
+
+    RIGHTBRACE  shift, and go to state 104
+
+
+state 79
+
+   54 argument: ID PERIOD ID .
+
+    $default  reduce using rule 54 (argument)
+
+
+state 80
+
+   56 argument: LEFTPAREN math RIGHTPAREN .
+
+    $default  reduce using rule 56 (argument)
+
+
+state 81
+
+   38 bool: bool BOOLOR math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 38 (bool)
+
+
+state 82
+
+   37 bool: bool BOOLAND math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 37 (bool)
+
+
+state 83
+
+   42 bool: bool NOT math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 42 (bool)
+
+
+state 84
+
+   41 bool: bool BOOLEQUAL math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 41 (bool)
+
+
+state 85
+
+   39 bool: bool LESSTHAN math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 39 (bool)
+
+
+state 86
+
+   40 bool: bool GREATERTHAN math .
+   45 math: math . PLUS T
+   46     | math . MINUS T
+
+    PLUS   shift, and go to state 62
+    MINUS  shift, and go to state 63
+
+    $default  reduce using rule 40 (bool)
+
+
+state 87
+
+   45 math: math PLUS T .
+   48 T: T . MULTIPLICATION argument
+   49  | T . DIVISON argument
+
+    MULTIPLICATION  shift, and go to state 64
+    DIVISON         shift, and go to state 65
+
+    $default  reduce using rule 45 (math)
+
+
+state 88
+
+   46 math: math MINUS T .
+   48 T: T . MULTIPLICATION argument
+   49  | T . DIVISON argument
+
+    MULTIPLICATION  shift, and go to state 64
+    DIVISON         shift, and go to state 65
+
+    $default  reduce using rule 46 (math)
+
+
+state 89
+
+   48 T: T MULTIPLICATION argument .
+
+    $default  reduce using rule 48 (T)
+
+
+state 90
+
+   49 T: T DIVISON argument .
+
+    $default  reduce using rule 49 (T)
+
+
+state 91
+
+   11 state: ID LEFTBRACE expression RIGHTBRACE EQUAL . expression linestop
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 105
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 92
+
+   10 state: ID PERIOD ID EQUAL expression . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 106
+
+
+state 93
+
+   35 blank: NEWLINE . blank
+
+    NEWLINE  shift, and go to state 93
+
+    $default  reduce using rule 36 (blank)
+
+    blank  go to state 107
+
+
+state 94
+
+   23 declare: VAR ID EQUAL LEFTCURLY object . RIGHTCURLY
+
+    RIGHTCURLY  shift, and go to state 108
+
+
+state 95
+
+   29 object: blank . ID COLON expression blank
+   30       | blank . ID COLON expression blank COMMA object
+
+    ID  shift, and go to state 109
+
+
+state 96
+
+   22 declare: VAR ID EQUAL LEFTBRACE array . RIGHTBRACE
+
+    RIGHTBRACE  shift, and go to state 110
+
+
+state 97
+
+   32 array: blank . expression blank
+   33      | blank . expression blank COMMA array
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 111
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 98
+
+   14 todo: NEWLINE state . todo
+
+    NEWLINE  shift, and go to state 72
+
+    $default  reduce using rule 15 (todo)
+
+    todo  go to state 112
+
+
+state 99
+
+   13 ifelse: IF condition LEFTCURLY todo RIGHTCURLY . after
+
+    ELSE  shift, and go to state 113
+
+    $default  reduce using rule 18 (after)
+
+    after  go to state 114
+
+
+state 100
+
+    6 state: WHILE condition LEFTCURLY NEWLINE state . NEWLINE RIGHTCURLY linestop
+
+    NEWLINE  shift, and go to state 115
+
+
+state 101
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE . RIGHTCURLY NEWLINE WHILE condition SEMI linestop
+
+    RIGHTCURLY  shift, and go to state 116
+
+
+state 102
+
+    4 state: WRITING LEFTPAREN docwrite RIGHTPAREN linestop .
+
+    $default  reduce using rule 4 (state)
+
+
+state 103
+
+   25 docwrite: expression COMMA docwrite .
+
+    $default  reduce using rule 25 (docwrite)
+
+
+state 104
+
+   55 argument: ID LEFTBRACE expression RIGHTBRACE .
+
+    $default  reduce using rule 55 (argument)
+
+
+state 105
+
+   11 state: ID LEFTBRACE expression RIGHTBRACE EQUAL expression . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 117
+
+
+state 106
+
+   10 state: ID PERIOD ID EQUAL expression linestop .
+
+    $default  reduce using rule 10 (state)
+
+
+state 107
+
+   35 blank: NEWLINE blank .
+
+    $default  reduce using rule 35 (blank)
+
+
+state 108
+
+   23 declare: VAR ID EQUAL LEFTCURLY object RIGHTCURLY .
+
+    $default  reduce using rule 23 (declare)
+
+
+state 109
+
+   29 object: blank ID . COLON expression blank
+   30       | blank ID . COLON expression blank COMMA object
+
+    COLON  shift, and go to state 118
+
+
+state 110
+
+   22 declare: VAR ID EQUAL LEFTBRACE array RIGHTBRACE .
+
+    $default  reduce using rule 22 (declare)
+
+
+state 111
+
+   32 array: blank expression . blank
+   33      | blank expression . blank COMMA array
+
+    NEWLINE  shift, and go to state 93
+
+    $default  reduce using rule 36 (blank)
+
+    blank  go to state 119
+
+
+state 112
+
+   14 todo: NEWLINE state todo .
+
+    $default  reduce using rule 14 (todo)
+
+
+state 113
+
+   16 after: ELSE . LEFTCURLY todo RIGHTCURLY after
+   17      | ELSE . ifelse
+
+    IF         shift, and go to state 5
+    LEFTCURLY  shift, and go to state 120
+
+    ifelse  go to state 121
+
+
+state 114
+
+   13 ifelse: IF condition LEFTCURLY todo RIGHTCURLY after .
+
+    $default  reduce using rule 13 (ifelse)
+
+
+state 115
+
+    6 state: WHILE condition LEFTCURLY NEWLINE state NEWLINE . RIGHTCURLY linestop
+
+    RIGHTCURLY  shift, and go to state 122
+
+
+state 116
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY . NEWLINE WHILE condition SEMI linestop
+
+    NEWLINE  shift, and go to state 123
+
+
+state 117
+
+   11 state: ID LEFTBRACE expression RIGHTBRACE EQUAL expression linestop .
+
+    $default  reduce using rule 11 (state)
+
+
+state 118
+
+   29 object: blank ID COLON . expression blank
+   30       | blank ID COLON . expression blank COMMA object
+
+    STRING     shift, and go to state 30
+    ID         shift, and go to state 31
+    BREAK      shift, and go to state 32
+    NUM        shift, and go to state 33
+    NOT        shift, and go to state 34
+    LEFTPAREN  shift, and go to state 35
+
+    expression  go to state 124
+    bool        go to state 37
+    math        go to state 38
+    T           go to state 39
+    argument    go to state 40
+
+
+state 119
+
+   32 array: blank expression blank .
+   33      | blank expression blank . COMMA array
+
+    COMMA  shift, and go to state 125
+
+    $default  reduce using rule 32 (array)
+
+
+state 120
+
+   16 after: ELSE LEFTCURLY . todo RIGHTCURLY after
+
+    NEWLINE  shift, and go to state 72
+
+    $default  reduce using rule 15 (todo)
+
+    todo  go to state 126
+
+
+state 121
+
+   17 after: ELSE ifelse .
+
+    $default  reduce using rule 17 (after)
+
+
+state 122
+
+    6 state: WHILE condition LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 127
+
+
+state 123
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE . WHILE condition SEMI linestop
+
+    WHILE  shift, and go to state 128
+
+
+state 124
+
+   29 object: blank ID COLON expression . blank
+   30       | blank ID COLON expression . blank COMMA object
+
+    NEWLINE  shift, and go to state 93
+
+    $default  reduce using rule 36 (blank)
+
+    blank  go to state 129
+
+
+state 125
+
+   33 array: blank expression blank COMMA . array
+
+    NEWLINE  shift, and go to state 93
+
+    RIGHTBRACE  reduce using rule 34 (array)
+    $default    reduce using rule 36 (blank)
+
+    array  go to state 130
+    blank  go to state 97
+
+
+state 126
+
+   16 after: ELSE LEFTCURLY todo . RIGHTCURLY after
+
+    RIGHTCURLY  shift, and go to state 131
+
+
+state 127
+
+    6 state: WHILE condition LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY linestop .
+
+    $default  reduce using rule 6 (state)
+
+
+state 128
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE . condition SEMI linestop
+
+    LEFTPAREN  shift, and go to state 19
+
+    condition  go to state 132
+
+
+state 129
+
+   29 object: blank ID COLON expression blank .
+   30       | blank ID COLON expression blank . COMMA object
+
+    COMMA  shift, and go to state 133
+
+    $default  reduce using rule 29 (object)
+
+
+state 130
+
+   33 array: blank expression blank COMMA array .
+
+    $default  reduce using rule 33 (array)
+
+
+state 131
+
+   16 after: ELSE LEFTCURLY todo RIGHTCURLY . after
+
+    ELSE  shift, and go to state 113
+
+    $default  reduce using rule 18 (after)
+
+    after  go to state 134
+
+
+state 132
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE condition . SEMI linestop
+
+    SEMI  shift, and go to state 135
+
+
+state 133
+
+   30 object: blank ID COLON expression blank COMMA . object
+
+    NEWLINE  shift, and go to state 93
+
+    ID        reduce using rule 36 (blank)
+    $default  reduce using rule 31 (object)
+
+    object  go to state 136
+    blank   go to state 95
+
+
+state 134
+
+   16 after: ELSE LEFTCURLY todo RIGHTCURLY after .
+
+    $default  reduce using rule 16 (after)
+
+
+state 135
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI . linestop
+
+    NEWLINE  shift, and go to state 27
+    SEMI     shift, and go to state 28
+
+    linestop  go to state 137
+
+
+state 136
+
+   30 object: blank ID COLON expression blank COMMA object .
+
+    $default  reduce using rule 30 (object)
+
+
+state 137
+
+    7 state: DO LEFTCURLY NEWLINE state NEWLINE RIGHTCURLY NEWLINE WHILE condition SEMI linestop .
+
+    $default  reduce using rule 7 (state)

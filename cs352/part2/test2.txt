@@ -1,0 +1,4 @@
+<script type="text/JavaScript">
+var test = "now" +hi
+var id= id + id + "hi" + id + id + "hi" + id + id;
+</script>
