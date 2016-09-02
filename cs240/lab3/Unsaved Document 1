@@ -1,0 +1,10 @@
+//int main(){
+//int n=0;
+//	char x[140];
+//	int z=readMessage(x);
+//	for(n=0;n<14;n++)
+//	{
+	//putchar(x[n]);
+//	}
+
+//}
