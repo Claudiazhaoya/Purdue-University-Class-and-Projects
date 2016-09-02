@@ -1,0 +1,45 @@
+
+public class StackList implements Stack {
+	int entries=0;
+	List head;
+	List temperary;
+
+	public class List{
+		public double val;
+		public List nextList;
+		public List prevList;
+	}
+	
+    public StackList() {
+    	head=null; 		
+    }
+    
+    public int numberOfEntries() {
+	return entries;
+    }
+    
+    public void push( double val ) throws StackFullException {
+    	List packet = new List();
+    	packet.val=val;
+    	packet.nextList=head;
+    	head=packet;
+    	entries++;
+    }
+    
+    public double pop() throws StackEmptyException {
+    	if(entries==0){
+    			throw new StackEmptyException();
+    	}
+    	List temperary = head;
+    	head=head.nextList;
+    	
+    	return temperary.val;
+    }
+    
+    public String toString() {
+	return "";
+    }
+};
+
+
+

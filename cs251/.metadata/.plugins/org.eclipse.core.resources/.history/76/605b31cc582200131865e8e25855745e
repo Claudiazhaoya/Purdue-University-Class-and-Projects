@@ -1,0 +1,49 @@
+
+ class List{
+	public double info;
+	public List nextList;
+	public List prevList;
+
+	public List(double info){
+		info=info;
+	}
+	
+}
+public class StackList implements Stack {
+	int entries=0;
+	List head;
+	
+    public StackList() {
+    	head=null;
+    	temp=null;
+    	
+    		
+    }
+    
+    public int numberOfEntries() {
+	return entries;
+    }
+    
+    public void push( double val ) throws StackFullException {
+    	List list = new List(val);
+    	list.nextList=head;
+    	head=list;
+    }
+    
+    public double pop() throws StackEmptyException {
+    	if(entries==0){
+    			throw new StackEmptyException();
+    	}
+    	List temperary = head;
+    	head=head.nextList;
+    	return tempeary;
+	return 0;
+    }
+    
+    public String toString() {
+	return "";
+    }
+};
+
+
+

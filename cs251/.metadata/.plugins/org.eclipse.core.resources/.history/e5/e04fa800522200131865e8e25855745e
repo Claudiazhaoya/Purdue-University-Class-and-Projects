@@ -1,0 +1,28 @@
+
+public class StackList implements Stack {
+	int entries=0;
+    public StackList() {
+    }
+    
+    public int numberOfEntries() {
+	return entries;
+    }
+    
+    public void push( double val ) throws StackFullException {
+    }
+    
+    public double pop() throws StackEmptyException {
+    	if(entries==0){
+    			throw new StackEmptyException();
+
+    	}
+	return 0;
+    }
+    
+    public String toString() {
+	return "";
+    }
+};
+
+
+

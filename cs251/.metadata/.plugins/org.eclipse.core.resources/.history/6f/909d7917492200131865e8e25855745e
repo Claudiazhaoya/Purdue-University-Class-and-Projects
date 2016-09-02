@@ -1,0 +1,33 @@
+import java.util.Arrays;
+
+public class StackArray implements Stack {
+	double[] stake;
+	
+    public StackArray( int maxSize ) {
+    	stake = new double[10];
+	
+    }
+    
+    public int numberOfEntries() {
+	return 0;
+    }
+    
+    public void push( double val ) throws StackFullException {
+    	System.out.println("in push");
+    	
+    	
+
+    }
+    
+    public double pop() throws StackEmptyException {
+    	System.out.println("in pop");
+    	
+	
+	return 0;
+    }
+    
+    public String toString() {
+	return "";
+    }
+};
+
