@@ -1,0 +1,9 @@
+public class Sudent{
+    public static final String[] YEARS=
+    {"Freshman","Sophomore","Junior","Senior"};
+    private String name;
+    private in year;
+    private double GPA;
+    
+    public Student (String name,int year,double GPA){
+        

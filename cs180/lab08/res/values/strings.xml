@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Compound Interest Calculator</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="principle">Principal :</string>
+    <string name="rate">Rate :</string>
+    <string name="years">Years :</string>
+    <string name="result">The result is :</string>
+    <string name="title">Compound Interest Calculator</string>
+
+</resources>

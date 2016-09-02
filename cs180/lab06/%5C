@@ -1,0 +1,22 @@
+public class Mode{
+	public static void main(String[] args){
+		int[] list;
+		int mode = 0;
+		int number = 1;
+		int frequency =0;
+		for(int i=0;(i<list.length-1);i++){
+			if(list[i]==list[i+]){
+				mode = list[i];
+				number++;
+			}else{
+				if(number>frequency){
+					frequency = number;
+				}else if(frequency==number){
+					mode = 0;
+				}
+				number=1;
+			}
+		}
+		System.out.println("MODE IS: " +mode);
+	}
+}

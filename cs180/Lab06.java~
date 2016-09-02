@@ -1,0 +1,203 @@
+//CS 180 - Lab 06: Control Flow
+
+public class Lab06 {
+  
+  /*
+   * If the userID String equals "PurdueStudent" and the password String equals "b74ktxc",
+   * return "true". Else, return "false". To compare strings, 
+   * use the String method .equals(String other). For instance, 
+   * "a".equals("b") returns false, and "a".equals("a") returns true.
+  */
+  
+  public boolean logIn(String userID, String password){
+    //Fill in
+    return true;
+  }
+  
+  /*
+   * If there were enough funds to withdraw, withdraw the correct amount from the balance.
+   * Else, keep the balance as is. This balance should be returned.
+  */
+  
+  public double withdrawAmount(double balance, double withdraw){
+    //Fill in
+    return 0.0;
+  }
+  
+  /*
+   * If the balance is below 100 dollars, remove a $5 penalty from the account.
+   * If the balance will go negative from this
+   * removal, set the balance to $0.00. This balance should be returned.
+  */
+  
+  public double removePenalty(double balance){
+    //Fill in
+    return 0.0;
+  }
+  
+  /*
+   * If the balance is above 200 dollars, continue removing 5 dollars from the balance
+   * until it falls below 200 dollars. The new balance should be returned.
+  */
+  
+  public double removeCash(double balance){
+    //Fill in
+    return 0.0;
+  }
+  
+  /*
+   * The monthly interest is 1%. From the starting balance, add monthly interest and
+   * print out the balances for every month for 1 full year. This final balance should
+   * be returned.
+  */
+  
+  public double addInterest(double balance){
+    //Fill in
+    return 0.0;
+  }
+  
+  /*
+   * If the name of the account is "Bob", a Boolean value of true should be returned
+   * Otherwise, false should be returned.
+  */
+  
+  public boolean isBob(String acctName){
+    //Fill in
+    return true;
+  }
+  
+  /*
+   * Given the balance, the monthly interest rate, and the final value,
+   * return the number of months that it will take to reach the final value.
+   * The interest rate is given as a percentage between 0.0 and 1.0 (e.g. 10% = 0.1).
+  */
+  
+  public int interestToFinalVal(double balance, double interestRate, double finalVal){
+    //Fill in
+    return 0;
+  }
+  
+  /*
+   * If the balance is less than $500 return a string "Small".
+   * Otherwise return a string "Not Small".
+  */
+  
+  public String isSmall(double balance){
+    //Fill in
+    return "";
+  }
+  
+  /*
+   * If the balance is between $500 and $2000 inclusive return a string "Medium".
+   * Otherwise return a string "Not Medium".
+  */
+  
+  public String isMedium(double balance){
+    //Fill in
+    return "";
+  }
+  
+  /*
+   * If the balance is greater than $2000 return a string "Large".
+   * Otherwise return a string "Not Large".
+  */
+  
+  public String isLarge(double balance){
+    //Fill in
+    return "";
+  }
+
+  /*
+   * If the value of the grade is greater than or equal to 60 and less than 80,
+   * return "Pass". If the value is greater than or equal to 80, return "Pass+",
+   * else return "Fail".
+  */
+  
+  public String displayGrade(double grade){
+    //Fill in
+    return "";
+  }
+
+  /*
+   * If the number is greater than 50 or the Boolean value is true, then return true.
+   * Otherwise return false. 
+  */
+  
+  public boolean numOrVal(double num, boolean val){
+    //Fill in
+    return true;
+  }
+
+  /*
+   * If it is nice outside, then the worker will take a vacation. He will also take
+   * a vacation if his parents are in town and it is a Friday. He won't take a vacation
+   * otherwise. Return whether the worker will take a vacation or not.
+  */
+  
+  public boolean onVacation(boolean isNice, boolean inTown, boolean isFriday){
+    //Fill in
+    return true;
+  }
+  
+  /*
+   * You are in charge of two workers that can both take vacations. If a worker has a
+   * Boolean value of true for a particular day, this means that they want to take a
+   * vacation. The output of the function will tell whether we will have a problem or not.
+   * Given two true values for both workers, we will have a problem, so the output
+   * returned should be true. If only one wants a vacation, then there is no problem
+   * at all. There is also no problem for neither of them wanting a vacation on that day.
+  */
+  
+  public boolean twoWorkers(boolean worker1, boolean worker2){
+    //Fill in
+    return true;
+  }
+  
+  /*
+   * We have a dog and cat that can't be in the same room together. If neither of them
+   * are in the room, we should return true (there is no problem.) If one of them is in the
+   * room, we also return true. We should return false if both of them are in the room
+   * at the same time (there is a problem.)
+  */
+  
+  public boolean haveConflict(boolean dog, boolean cat){
+    //Fill in
+    return true;
+  }
+  
+  /*
+   * Multiply the first n positive integers using a while loop and return this value.
+  */
+  
+  public int multiplyWhile(int n){
+    //Fill in
+    return 0;
+  }
+  
+  /*
+   * Multiply the first n positive integers using a do while loop and return this value.
+  */
+  
+  public int multiplyDoWhile(int n){
+    //Fill in
+    return 0;
+  }
+  
+  /*
+   * Add up the first n positive integers using a while loop and return this value.
+  */
+  
+  public int sumWhile(int n){
+    //Fill in
+    return 0;
+  }
+  
+  /*
+   * Add up the first n positive integers using a do while loop and return this value.
+  */
+  
+  public int sumDoWhile(int n){
+    //Fill in
+    return 0;
+  }
+}

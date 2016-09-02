@@ -1,0 +1,20 @@
+7.1)  It would be better to use command line when dealing with file systems and os because it offers more 
+control. Also when speed is of the essance.
+	GUI would be better for basic users when doing basic tasks and for multitasking
+
+7.2) Modal dialog is when the user must interact with the dialog box before contining what they were doing 
+where as modeless is they can use the window without closeing out of the dialgo box. One area where you would 
+want dialog is closing an unsaved word document. One where you would maybe want modeless is an error message
+that a program is needed to close. 
+
+7.3)  You would use Icon when you want a specific image to appear in the box such as during a warning a yellow
+triangle with a elecmation point
+	Message: would be any message that you want displayed to the user
+	Title: I would use this to give a very brief description of what the box does such as for an error
+		it would say error
+	Message Type: For normal messages I would use Information Message
+	Componet: If you do not want it to be defualt you can specify the size location and all other aspects 
+		of the dialog window.
+		
+7.4) I would say that the first of the two options prsented would be best. There might be some odd corner case
+where the value of response would make it so that second option would give a pass when it should not.

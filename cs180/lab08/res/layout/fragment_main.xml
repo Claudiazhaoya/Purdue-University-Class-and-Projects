@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+     >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="41.2sp"
+        android:text="@string/title"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="@string/principle"
+        android:textSize="18sp"
+        android:lineSpacingExtra="4.2sp"
+        android:layout_marginLeft="19sp"
+        
+ 	/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Enter the Principle here"
+        android:id="@+id/ent_p"
+	>
+
+        <requestFocus />
+    </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="15dp"
+        android:text="@string/rate"
+        android:textSize="18sp"
+        android:lineSpacingExtra="4.2sp"
+        android:layout_marginLeft="19sp"
+        
+ 	/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="Enter the Rate here"
+        android:id="@+id/ent_r" >
+
+        <requestFocus />
+    </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="15dp"
+        android:text="@string/years"
+        android:textSize="18sp"
+        android:lineSpacingExtra="4.2sp"
+        android:layout_marginLeft="19sp"
+        
+ 	/>
+
+    <EditText
+        android:layout_width="260dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="Enter the Years here"
+        android:id="@+id/ent_y" >
+
+        <requestFocus />
+    </EditText>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    <Button
+    	android:layout_width="100dp"
+    	android:layout_height="40dp"
+    	android:text="  Submit"
+		android:layout_marginTop="19dp"
+    	android:layout_marginLeft="45dp"
+    	android:textColor="@android:color/white"
+    	android:id="@+id/submitButton"
+    	 android:gravity="left|center_vertical"
+    />
+    <Button
+    	android:layout_width="100dp"
+    	android:layout_height="40dp"
+    	android:text="   Reset"
+		android:layout_marginTop="19dp"
+    	android:layout_marginLeft="5dp"
+    	android:textColor="@android:color/white"
+    	android:layout_toRightOf="@id/submitButton"
+    	android:gravity="left|center_vertical"
+    	android:id="@+id/resetButton"
+    />
+    
+
+</RelativeLayout>
+<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:lineSpacingExtra="4.2sp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/result"
+        
+ 	/>
+</LinearLayout>

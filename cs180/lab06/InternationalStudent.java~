@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class InternationalStudent extends Student{
+    public String country;
+    public String visaStatus;
+    
+    public InternationalStudent(String country,String visaStatus){
+        setCountry(country);
+        setVisaStatus(visaStatus);
+    }
+    
+    public void setCountry(String country){this.country = country;}
+    public void setVisaStatus(String visaStatus){this.visaStatus=visaStatus;}
+    
+    public String getCountry(){return country;}
+    public String getVisaStatus(){return visaStatus;}
+    
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        
+    }
+}
+    

@@ -1,0 +1,110 @@
+import java.util.Scanner;
+
+  public class project1{
+    public static void main (String[] args){
+      int guests, cheese, pepperoni, vegetarian, pepsi, mountaindew, sprite; 
+      double tip, grandtotal,subtotal, pizzaBill,sodaBill,tipTotal, pizza, soda,tipperperson, 
+        cheesePizza, pepperoniPizza, vegetarianPizza, pepsis, mountaindews, sprites;
+      
+      pizza = 5.00 + (double)(Math.random()*15.00);
+      soda =1.00 +(double) (Math.random()*4.00);
+   
+     Scanner scanner = new Scanner(System.in);
+
+      
+    System.out.print("Enter the number of guests:  ");
+     guests = scanner.nextInt();
+      
+    System.out.print("Enter the number of cheese pizzas:  ");
+    cheese = scanner.nextInt();
+      
+    System.out.print("Enthe the number of pepperoni pizzas:  ");
+    pepperoni = scanner.nextInt();
+      
+    System.out.print("Enther the number of vegetarian pizzas:  ");
+    vegetarian = scanner.nextInt();
+      
+    System.out.print("Enter the number of two liters of pepsi:  ");
+    pepsi = scanner.nextInt();
+      
+    System.out.print("Enter the number of two liters of mountain dew:  ");
+    mountaindew = scanner.nextInt();
+      
+    System.out.print("Enter the number of two liters of Sprite");
+    sprite = scanner.nextInt();
+      
+    System.out.print("Enter the percentgae tip");
+    tip = scanner.nextDouble()/100;
+    
+    
+    cheesePizza = (cheese*pizza);
+    pepperoniPizza = (pepperoni*pizza);
+    vegetarianPizza = (vegetarian*pizza);
+    pizzaBill = (cheesePizza+pepperoniPizza+vegetarianPizza);
+    
+    double cp = cheesePizza;
+    cp = Math.round(cp*100)/100.0;
+    
+    double pp = pepperoniPizza;
+    pp = Math.round(pp*100)/100.0;
+    
+    double vp = vegetarianPizza;
+    vp = Math.round(vp*10)/100.0;
+    
+    
+    pepsis = (pepsi*soda);
+    mountaindews = (mountaindew*soda);
+    sprites = (sprite*soda);
+    sodaBill = (pepsis+mountaindews+sprites);
+    
+    double ps = pepsis;
+    ps = Math.round(ps*100)/100.0;
+    
+    double ms = mountaindews;
+    ms = Math.round(ms*100)/100.0;
+    
+    double ss = sprites;
+    ss = Math.round(ss*100)/100.0;
+    
+    subtotal = pizzaBill+sodaBill;
+    
+    double st = subtotal;
+    st = Math.round(st*100)/100.0;
+    
+    tipTotal = (pizzaBill+sodaBill)*tip;
+    
+    double tt = tipTotal;
+    tt = Math.round(tt*100)/100.0;
+    
+    grandtotal = tipTotal+subtotal;
+    
+    double gt = grandtotal;
+    gt = Math.round(gt*100)/100.0;
+       
+    tipperperson = tipTotal/guests;
+    
+    double tpp = tipperperson;
+    tpp = Math.round(tpp*100)/100.0;  
+      
+    
+    System.out.println("Purdue Pete's Pizza Piazza" + "/n" + "=================");
+      
+       
+       
+      
+      
+      
+      
+      
+      
+     
+      
+      
+    }
+  }
+      
+      
+      
+      
+      
+      

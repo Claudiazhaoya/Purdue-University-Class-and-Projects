@@ -1,0 +1,6 @@
+public class Dynamite implements Explodable{
+    public boolean explode(){
+        System.out.println("BOOM!");
+        return true;
+    }
+}
